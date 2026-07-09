@@ -106,3 +106,4 @@ some features Id like to add in the future:
 made by **nini**
 
 learning Python one project at a time :p
+
