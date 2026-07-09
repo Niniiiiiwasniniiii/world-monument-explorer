@@ -1,33 +1,28 @@
-# 🌍 World Monument Explorer
+#  World Monument Explorer
 
-A simple interactive web app that lets users explore famous monuments from around the world on an interactive map.
+a simple interactive web app that lets users explore famous monuments from around the world on an interactive map.
 
-This project was built using **Python**, **Flask**, and **Folium**. It started as a Streamlit project, but I later converted it into a Flask application so it could be deployed online.
+this project was built using python flask and folium.
 
----
+## features
 
-## Features
+-  interactive world map
+-  markers for famous monuments
+-  search monuments by name
+-  random monument generator
+-  read a short history of each monument
+-  fun facts about every monument
 
-- 🗺️ Interactive world map
-- 📍 Markers for famous monuments
-- 🔎 Search monuments by name
-- 🎲 Random monument generator
-- 📖 Read a short history of each monument
-- 💡 Fun facts about every monument
 
----
+## built With
 
-## Built With
-
-- Python
-- Flask
-- Folium
+- python
+- flask
+- folium
 - HTML
 - CSS
 
----
-
-## Project Structure
+## project structure
 
 ```
 world-monument-explorer/
@@ -47,23 +42,22 @@ world-monument-explorer/
 └── README.md
 ```
 
----
 
-## Running Locally
+## running Locally
 
-Clone the repository
+clone the repository
 
 ```bash
 git clone https://github.com/Niniiiiiwasniniiii/world-monument-explorer.git
 ```
 
-Go into the project folder
+go into the project folder
 
 ```bash
 cd world-monument-explorer
 ```
 
-Install the required packages
+install the required packages
 
 ```bash
 pip install -r requirements.txt
@@ -75,61 +69,40 @@ Run the app
 python -m api.index
 ```
 
-Then open:
+then open:
 
-```
 http://127.0.0.1:5000
-```
-
----
-
-## What I Learned
-
-This project taught me a lot more than I expected.
-
-Some things I learned while building it:
-
-- Working with Flask routing
-- Building interactive maps using Folium
-- Using HTML templates with Jinja
-- Connecting Python with a frontend
-- Git and GitHub basics
-- Deploying a Python project
-- Debugging import errors and template errors
 
 
----
 
-## Challenges
+## what I Learned
 
-Some of the challenges I faced included:
+this project taught me a lot more than I expected.
 
-- Learning how templates work
-- Making the project deployment-ready
-- Debugging several runtime and template errors
+some things I learned while building it;
 
-Although it took a while, solving each issue helped me understand how Flask applications are structured.
+- working with flask routing
+- building interactive maps using folium
+- using HTML templates with jinja
+- debugging import errors and template errors
 
----
+although it took a while, solving each issue helped me understand how Flask applications are structured.
 
-## Future Improvements
+## future Improvements
 
-Some features I'd like to add in the future:
+some features Id like to add in the future:
 
-- More monuments from different countries
-- Filters by continent
-- Images for every monument
-- Dark mode
-- "Nearby monuments" feature
-- Quiz mode to test geography knowledge
-- Better UI and animations
+- more monuments from different countries
+- filters by continent
+- images for every monument
+- dark mode
+- "nearby monuments" feature
+- quiz mode to test geography knowledge
+- better UI and animations
 
----
 
-## Author
+## author
 
-Made by **nini**
+made by **nini**
 
-```
-Learning Python one project at a time :)
-```
+learning Python one project at a time :p
