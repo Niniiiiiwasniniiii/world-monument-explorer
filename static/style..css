@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0 ;
+    box-sizing: border-box ;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif ;
+    background: linear-gradient(to bottom, #0b1727, #102c45, #184d6e);
+    color: blanchedalmond;
+    min-height: 100vh;
+}
+.hero{
+    text-align: center;
+    padding: 40px 20px;
+}
+.hero h1 {
+    font-size: 3rem;
+    color: #ffd76a;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: #d8e6f0;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 25px;
+}
+
+.controls input {
+    padding: 12px;
+    width: 300px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    font-size: 16px;
+}
+
+.controls button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    background: #ffd76a;
+    color: #1d3557;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.controls button:hover {
+    background: #ffca28;
+    transform: translateY(-2px);
+}
+
+.map-container {
+    width: 90%;
+    margin: 20px auto;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 650px;
+    border: none;
+}
+
+.monument-card {
+    width: 90%;
+    margin: 30px auto;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.monument-card h2 {
+    color: #ffd76a;
+    margin-bottom: 8px;
+}
+
+.monument-card h3 {
+    margin-top: 20px;
+    color: #8be9fd;
+}
+
+.monument-card h4 {
+    color: #d8e6f0;
+    margin-bottom: 15px;
+}
+
+.monument-card p {
+    line-height: 1.7;
+    margin-top: 10px;
+}
+
+.monument-card ul {
+    margin-top: 12px;
+    padding-left: 20px;
+}
+
+.monument-card li {
+    margin-bottom: 10px;
+}
+
+.message {
+    width: 90%;
+    margin: 20px auto;
+    background: #b00020;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #d8e6f0;
+    margin-top: 40px;
+    font-size: 15px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    margin: 15px 0;
+}
+
+@media (max-width: 768px) {
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    .controls input {
+        width: 100%;
+    }
+
+    .map-container,
+    .monument-card {
+        width: 95%;
+    }
+
+    .map-container iframe {
+        height: 500px;
+    }
+
+}
