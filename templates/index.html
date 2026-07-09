@@ -1,67 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name = "viewport" content = "width=device-width, initial-scalr=1,0">
-        <title>World Monument Explorer</title>
-        <link rel = "stylesheet"href="{{url_for('static', filename='style.css') }}">
 
-    </head>
-    <body>
-        <header>
-            <h1>World monument explorer</h1>
-            <p>
-                explore famous monuments from around the world!
-            </p>
-        </header>
-        <section class>="controls">
-            <form action="/search" method = "POST">
-                <input
-                type=" text"
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Monument Explorer</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>🌍 World Monument Explorer</h1>
+        <p>Explore famous monuments from around the world!</p>
+    </header>
+
+    <section class="controls">
+
+        <form action="/search" method="POST">
+
+            <input
+                type="text"
                 name="monument"
-                placeholder="search a monument..."
-                required
-                >
-                <button type="submit">
-                    search
-                </button>
-            </form>
-        </section>
-        (% if message %)
-        <div class = "message">
-            {{message}}
-        </div>
-        (% endif %)
-        <section class = "map">
-            {{map_html|safe}}
-        {%i f monument %}
-        <h2>
-            {{MONUMENTS}}
-        </h2>
-        <h4>
-            {{monument.country}}
-        </h4>
-            <h3>
-                History
-            </h3>
-            <p>
-                {{monument.history}}
-            </p>
-            <h3>
-                FUN FACTS!
-            </h3>
-            <ul>
-                {% for facy in monument.facts %}
-                <li>
-                    {{ fact }}
-                </li>
-                {% endfor% }
-            </ul>
-        </section>
-        {% endfor %}
-        <footer>
-            made with love using python, flask and folium
-        </footer>
-    </body>
-        
+                placeholder="Search a monument..."
+                required>
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+    </section>
+
+    {% if message %}
+    <div class="message">
+        {{ message }}
+    </div>
+    {% endif %}
+
+    <section class="map">
+        {{ map_html | safe }}
+    </section>
+
+    {% if monument %}
+
+    <section class="info">
+
+        <h2>{{ monument.name }}</h2>
+
+        <h4>{{ monument.country }}</h4>
+
+        <h3>History</h3>
+
+        <p>{{ monument.history }}</p>
+
+        <h3>Fun Facts</h3>
+
+        <ul>
+
+            {% for fact in monument.facts %}
+
+            <li>{{ fact }}</li>
+
+            {% endfor %}
+
+        </ul>
+
+    </section>
+
+    {% endif %}
+
+    <footer>
+        Made with ❤️ using Python, Flask and Folium
+    </footer>
+
+</body>
+
 </html>

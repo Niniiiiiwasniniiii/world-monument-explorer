@@ -1,81 +1,115 @@
+import os
+import sys
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
 from flask import Flask, render_template, request
-import folium 
+import folium
+
 from world_monument_explorer import (
     MONUMENTS,
-    find_nearest_monument,
-    search_monument
+    search_monument,
+    random_monument
 )
-app = Flask (
+
+app = Flask(
     __name__,
-    template_folder = '../templates',
+    template_folder="../templates",
     static_folder="../static"
 )
 
-@app.route("?")
+
+@app.route("/")
 def home():
+
     world_map = folium.Map(
-        location=[20,0],
+        location=[20, 0],
         zoom_start=2,
         tiles="OpenStreetMap"
     )
-    for world_monument_explorer in MONUMENTS :
-        folium.Marker(
-            location=[world_monument_explorer["lat"],
-                      world_monument_explorer["lot"]],
-                      popup= f"{world_monument_explorer['name']}<br>{world_monument_explorer['name']}",
-                      toppltip=world_monument_explorer["name"]
 
+    for monument in MONUMENTS:
+        folium.Marker(
+            location=[monument["lat"], monument["lon"]],
+            popup=f"{monument['name']}<br>{monument['country']}",
+            tooltip=monument["name"]
         ).add_to(world_map)
-        map_html = world_map._repr_html()
-        return render_template(
-            "index.html",
-            map_html=map_html
-        )
-    
-    @app.route("/search", methods= ["POST"])
-    def search():
-       MONUMENTS = request.form.get("monument")
-       world_monument_explorer = search_monument(MONUMENTS)
-       if world_monument_explorer is None:
-           return render_template(
-               "index.html",
-               message= "Monument not found."
-           )
-       world_map = folium.Map(
-           location= [world_monument_explorer["lat"], world_monument_explorer["lon"]],
-           zoom_start=8
-       )
-       folium.Marker(
-           location = [world_monument_explorer["lat"], world_monument_explorer["lon"]],
-           popup=world_monument_explorer["name"],
-           tooltip=world_monument_explorer["name"]
-       ).add_to(world_map)
-       return render_template(
-           "index.html",
-           map_html=world_map._repr_html(),
-           world_monument_explorer = MONUMENTS
-       )
-    @app.route("/random")
-    def random_place():
-        world_monument_explorer = MONUMENTS()
+
+    return render_template(
+        "index.html",
+        map_html=world_map._repr_html_(),
+        monument=None,
+        message=None
+    )
+
+
+@app.route("/search", methods=["POST"])
+def search():
+
+    name = request.form.get("monument")
+
+    monument = search_monument(name)
+
+    if monument is None:
+
         world_map = folium.Map(
-            location= [world_monument_explorer["lat"], world_monument_explorer["lon"]],
-            zoom_start=8
+            location=[20, 0],
+            zoom_start=2
         )
-        folium.Marker(
-            location= [world_monument_explorer["lat"], world_monument_explorer["lon"]],
-            popup=world_monument_explorer["name"],
-            tooptip=world_monument_explorer["name"]
-        ).add_to(world_map)
+
         return render_template(
             "index.html",
-            map_html-world_map._repr_html_(),
-            world_monument_explorer=MONUMENTS
+           map_html=world_map._repr_html_(),
+            monument=None,
+            message="Monument not found."
         )
-    if __name__ == "__main__":
-        app.run(debug=True)
+
+    world_map = folium.Map(
+        location=[monument["lat"], monument["lon"]],
+        zoom_start=8
+    )
+
+    folium.Marker(
+        location=[monument["lat"], monument["lon"]],
+        popup=monument["name"],
+        tooltip=monument["name"]
+    ).add_to(world_map)
+
+    return render_template(
+        "index.html",
+        map_html=world_map._repr_html_(),
+        monument=monument,
+        message=None
+    )
 
 
+@app.route("/random")
+def random_place():
+
+    monument = random_monument()
+
+    world_map = folium.Map(
+        location=[monument["lat"], monument["lon"]],
+        zoom_start=8
+    )
+
+    folium.Marker(
+        location=[monument["lat"], monument["lon"]],
+        popup=monument["name"],
+        tooltip=monument["name"]
+    ).add_to(world_map)
+
+    return render_template(
+        "index.html",
+        map_html=world_map._repr_html_(),
+        monument=monument,
+        message=None
+    )
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
 
 
